@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <div class="d1_quote"  style="padding:10px 20px">
+        <p class="col-md-6">
+            <span>Ship To</span>
+            <select style="display:inline; width:50%">
+              <option value ="Singapore">Singapore</option>
+              <option value ="Indonesia">Indonesia</option>
+              <option value="China">China</option>
+            </select>
+        </p>
+        <p class="col-md-6">
+            <span>Buy From</span>
+            <select style="display:inline; width:50%">
+              <option value ="USA">USA</option>
+              <option value ="Japan">Japan</option>
+              <option value="China">China</option>
+            </select>
+        </p>
+        <div class="rate_short col-md-3">
+            <h3>Rate Table</h3>
+            <table>
+                <tr>
+                    <td style="padding:10px; line-height:0.7">Express</td><td style="padding:10px; line-height:0.7">$6</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; line-height:0.7">Regular</td><td style="padding:10px; line-height:0.7">$3</td>
+                </tr>
+            </table>
+            <a href="{{=URL('default','d5')}}">Full rate table</a>
+        </div>
+        <div class="live_quote col-md-9">
+            <h3>Email me the quote</h3>
+            <input class="col-md-12" type="text" name="user_email" placeholder="Email Address"/>
+            <div class="col-md-5"  style="border-right:1px dashed #ffffff; font-size:90%">
+                <input class="col-md-1" type="radio" name="B4M_bool"/><p class="col-md-10">Ship For Me</p><br>
+                <input class="col-md-1" type="radio" name="B4M_bool"/><p class="col-md-10">Buy For Me</p><br>
+            </div>
+            <div class="col-md-6" style="font-size:90%">
+                <input class="col-md-1" type="radio" name="shipping" value="std"/><p class="col-md-10">Standard Shipping</p><br>
+                <input class="col-md-1" type="radio" name="shipping" value="exp"/><p class="col-md-10">Express Shipping</p><br>
+            </div>
+            <a class="black-button col-md-12" style="width:initial" href="{{=URL('default','d1', args=[3])}}">Confirm</a>              
+        </div>
+    </div>
+
+
+</html>

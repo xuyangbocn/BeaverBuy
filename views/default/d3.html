@@ -1,0 +1,69 @@
+{{hot_deals_enabled=False}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+
+<body>
+    <div class="row d3_S_back">
+        <h1>Place your <strong>Ship-For-Me</strong> order here</h1>
+        <div class="col-md-12 d3_add_item">
+            <input class="col-md-3" type="text" name="prod_dest" placeholder="Destination"/>
+            <input class="col-md-6" type="text" name="prod_url" placeholder="URL of product"/>
+            <input class="col-md-2" type="number" name="prod_quan" placeholder="Quantity" min="1"/>
+
+            <a href="{{=URL('default','d3_3',args=['S'])}}" id="submit_S_item" class="col-md-12 black-button" style="width:initial">Submit</a>
+        </div>
+    </div>
+    <hr>
+    <div class="row d3_B_back">
+        <h1>Place your <strong>Buy-For-Me</strong> order here</h1>
+        <div class="col-md-6 d3_add_item">
+            <input class="col-md-12" type="text" name="prod_url" placeholder="URL of product"/>
+            <input class="col-md-5" type="text" name="prod_price" placeholder="Price"/>
+            <input class="col-md-5" type="number" name="prod_quan" placeholder="Quantity" min="1"/>
+            <input class="col-md-5" type="text" name="prod_color" placeholder="Color"/>
+            <input class="col-md-5" type="text" name="prod_size" placeholder="Size"/>
+            <input class="col-md-12" style="height:30px" type="text" name="prod_other" placeholder="Other Instructions"/>
+
+            <a id="add_B_item" class="col-md-12 trans-button" style="width:initial">Add Item</a>
+        </div>
+        <div class="col-md-6 d3_item_list">
+<!--             <h3>Item List</h3>
+ -->            {{=LOAD('default','d3_1', ajax=True, target='d3_item_list')}}
+        </div>
+    </div>
+</body>
+
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#ffffef"});
+    // $(".section_main").css({"background-color":"#ffffff"});
+});
+</script>
+
+<script>
+    function updateList() {
+    BorS = 'B'//$('input[name="BorS"]:checked').val();
+    web2py_component('{{=URL("default", "d3_1")}}' + '/' + BorS, 'd3_item_list');  
+    };
+</script>
+
+
+<script>
+  $("#add_B_item").click(function(){
+    updateList();
+  });
+
+</script>
+
+</html>

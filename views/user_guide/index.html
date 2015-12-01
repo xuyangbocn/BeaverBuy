@@ -1,0 +1,352 @@
+{{extend 'layout.html'}}
+
+
+<div id="wrap">
+
+    <div class="row">
+        <div class="col-lg-2"></div>
+        <div class="col-lg-8 bg_user_guide" id="dashboard_section">
+
+        <h1>User Guide</h1>
+ 
+<div class="panel-group" id="accordion">
+    <div class="panel panel-default" id="panel1">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" 
+           href="#collapseOne">
+          Permissions
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+            <div class="panel-body">Athena has three types of account permissions, as listed below. Your accessibility to various system functions will depend on your role.
+            <div class="web2py_grid_u">
+            <table>
+              <thead>
+                <tr>
+                  <th>User Account type</th>
+                  <th>Permissions</th>
+                </tr>
+              </thead>
+              
+              <tbody>  
+                <tr>
+                  <td>Upload transaction personnel</td>
+                  <td><li>• Upload transaction through API: Upload transactions to Athena through API and account is verified by tokens;</li></td>
+                </tr>
+
+
+                <tr>
+                  <td>Screen transaction personnel</td>
+                  <td>
+
+                  <li>Perform screening: Customize screening parameters and start screening for suspicious cases or transactions on daily basis;</li>
+                  <li>View trend of suspicious cases: View trend of rising suspicious cases every day; </li>
+                  <li>View screening outcome: View the distribution of various types of suspicious cases that are raised from regular screening. Each case contains one or more relevant transactions;</li>
+                  </td>
+                </tr>
+
+
+
+                <tr>
+                  <td>Assess suspicious transaction personnel</td>
+                  <td>
+
+                  <li>All permissions for “Screen transaction personnel”</li>
+                  <li>Assess suspicious cases: Judge suspicious cases raised from regular screening, put down comments, course of action and decisions;</li>
+                  <li>View suspicious case record: search and view historical suspicious case record (past discussions, decisions, uploaded files and etc.);</li>
+                  </td>
+                </tr>
+
+            </tbody>
+            </table>
+
+
+            <p>* The access to manage accounts and permission is not open to users. Please contact Cynopsis® if you have such needs.</p>
+
+
+            </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="panel panel-default" id="panel2">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseTwo" class="collapsed">
+           Upload transaction through API
+        </a>
+        
+      </h4>
+
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse">
+            <div class="panel-body">
+              
+
+              <ul class="a">
+                <li>1. Ensure the token for the upload API is obtained from Cynopsis®;</li>
+                <li>2. URL for API is: https://xxx.cynopsis-solutions.com/athena/xxx/api;</li>
+                <li>3. Please refer to appendix for details regarding the API.</li>
+              </ul>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div class="panel panel-default" id="panel3">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseThree" class="collapsed">
+         Perform screening
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseThree" class="panel-collapse collapse">
+            <div class="panel-body">
+
+              <ul class="a">
+                <li>1. Click into NEW SCREENING;</li>
+                <li>2. Select the date of screening, as screening is be done on a daily basis;</li>
+                <li>3. Check the Rules that you want to apply to this screening;</li>
+               
+                <ol class="d">
+                <li>Hover the “I” beside each rule to read the description of each rule;</li>
+                <li>If the checkbox before a specific rule is not checked, the screening will ignore the rule</li>
+                </ol>
+
+              </ul>
+
+            
+
+              <ul class="a">
+              <li>4. For each of the selected Rules, adjust the parameter by dragging the slider or enter an exact number in the corresponding text box; Some common customizable parameters include:</li>
+
+
+              <ol class="d">
+
+                <li>“Suspicious if number of transaction exceeds”: The group of transactions only become suspicious and case will only be raised when system identifies more than specified number of transactions.</li>
+                <li>“Screen for transaction less than”: Transaction with value higher than specified will not be considered by the system. Potential money laundering activity tends to break big transaction into small ones that is below MAS specified threshold, hence requires special attention.</li>
+                <li>“Only screen for transaction within past (days)”: Potential money laundering activities are formed over a period of time instead of within one day. System would consider all transactions in the specified past period when screen for suspicious cases.</li>
+
+              </ol>
+
+              </ul>
+
+
+              <ul class="a">
+
+                <li>5. Click START SCREENING;</li>
+                <li>6. Various type of suspicious cases are raised and shown in a donut diagram;</li>
+                <li>7. Count of normal transactions against total number suspicious transaction for this round of screening is also shown in a donut diagram;</li>
+                <li>8. Suspicious cases details of today are listed below in the grid;</li>
+
+              <ol class="d">
+
+                <li>Click on the button in the right most column to see the detail of the cases;</li>
+                <li>Please refer to Assess suspicious cases.</li>
+                
+
+              </ol>
+              </ul>
+              
+
+
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default" id="panel4">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseFour" class="collapsed">
+          View trend of suspicious cases
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseFour" class="panel-collapse collapse">
+            <div class="panel-body">
+
+              <ul class="a">
+
+                <li>1. Click into HISTORICAL SCREENING RESULT;</li>
+                <li>2. The bar chart shows the total count of suspicious cases from daily screening in past one month;</li>
+                <li>3. Historical daily screening outcome is listed below the bar chart;</li>
+                
+              <ol class="d">
+
+                <li>Click on the button at the right most column to see the day’s screening outcome;</li>
+                <li>Please refer to View screening outcome.</li>
+
+              </ol>
+
+              </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="panel panel-default" id="panel5">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseFive" class="collapsed">
+          View screening outcome
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseFive" class="panel-collapse collapse">
+            <div class="panel-body">
+               
+               <ul class="a">
+                <li>1. Click into HISTORICAL SCREENING RESULT;</li>
+                <li>2. Find in the grid below the bar chart, the day you want to check;</li>
+                <li>3. Click on the button at the right most column of the row;</li>
+                <li>4. Various type of suspicious cases are shown in a donut diagram;</li>
+                <li>5. Count of normal transactions against total number suspicious transaction for this round of screening is also shown in a donut diagram;</li>
+                <li>6. Suspicious cases details of the day are listed below in the grid;</li>
+
+
+                <ol class="d">
+                  <li>Click on the button in the right most column to see the detail of the cases;</li>
+                  <li>Please refer to Assess suspicious cases.</li>
+                </ol>
+
+
+              </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="panel panel-default" id="panel6">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseSix" class="collapsed">
+          View suspicious case record
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseSix" class="panel-collapse collapse">
+            <div class="panel-body">
+            <p>To search for a specific suspicious case,</p>
+               <ul class="a">
+
+            <li>1. Click into SUSPICIOUS CASE RECORD;</li>
+            <li>2. Filter records by screening date and/or status of the suspicious case;</li>
+            <li>3. Find the in the grid, the suspicious case you want to look into;</li>
+            <li>4. Click on the button at the right most column of the row;</li>
+
+              </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+    <div class="panel panel-default" id="panel6">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseSeven" class="collapsed">
+          Assess suspicious cases
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseSeven" class="panel-collapse collapse">
+            <div class="panel-body">
+            
+               <ul class="a">
+
+            <li>1. The detected potential pattern of the case is displayed as the title at the top;</li>
+            <li>2. All relevant transactions regarding the case is listed in the grid which shows the date of transaction, remitter, beneficiary, amount, foreign currency involved and etc.;</li>
+            <li>3. You may upload files related to the case;
+                
+              <ol class="d">
+                <li>a.  Click SELECT and find the file you want to upload</li>
+                <li>Click SUBMIT</li>
+              </ol>
+              <li>4. The details and reasons why case is detected is in the description field;</li>
+              <li>5. You may leave decision notes in the conclusion field;</li>
+              <li>6. Case status may be select when the case is concluded;</li>
+              <li>7. As a traceable discussion feature, you may put down your comments and read others’ comments regarding the case in the annotation section below the case.</li>
+
+
+              </ul>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+<div class="panel panel-default" id="panel7">
+        <div class="panel-heading">
+             <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion"
+           href="#collapseEight" class="collapsed">
+         FAQ
+        </a>
+      </h4>
+
+        </div>
+        <div id="collapseEight" class="panel-collapse collapse">
+            <div class="panel-body">
+
+               <h4>How to change password?</h4>
+               <p>If you still remember your current password, click your account name on the upper-right corner and click password. The system will prompt you to enter current password and new password that you want to set.<br><br>
+
+
+                If you forgot your password, you may logout and click Login on the upper-right corner and click lost password. The system will prompt you to enter your email address. An email will be sent to you. The email contains a confirmation link clicking into which will enable you to reset your password.
+                </p>
+
+
+                <h4>What to do if I am not able to access some of the pages in Athena?</h4>
+                <p>Please double check if you are permitted to perform the action, if yes, please contact Cynopsis to re-configure your account permission.</p>
+
+                <h4>How to set up new user accounts?</h4>
+                <p>Athena is maintained by Cynopsis, thus, creation of new user accounts and amendment of existing users’ permission will be done by Cynopsis. Please contact Cynopsis for such requests.</p>
+
+
+               
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<!-- Post Info -->
+
+        <div class="col-lg-2"></div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+
+

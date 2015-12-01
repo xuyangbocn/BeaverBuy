@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<!--[if (gt IE 9)|!(IE)]><!--> <html class="no-js" lang="{{=T.accepted_language or 'en'}}"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <!-- www.phpied.com/conditional-comments-block-downloads/ -->
+    <!-- Always force latest IE rendering engine
+         (even in intranet) & Chrome Frame
+         Remove this if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge{{=not request.is_local and ',chrome=1' or ''}}">
+    <!--  Mobile Viewport Fix
+          j.mp/mobileviewport & davidbcalhoun.com/2010/viewport-metatag
+          device-width: Occupy full width of the screen in its current orientation
+          initial-scale = 1.0 retains dimensions instead of zooming out if page height > device height
+          user-scalable = yes allows the user to zoom in -->
+    <meta name="viewport" content="width=device-width, minimum-scale=1, maximum-scale=1">
+    <title>{{=response.title or request.application}}</title>
+    <!-- http://dev.w3.org/html5/markup/meta.name.html -->
+    <meta name="application-name" content="{{=request.application}}">
+    <!-- Speaking of Google, don't forget to set your site up:
+         http://google.com/webmasters -->
+    <meta name="google-site-verification" content="">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+    <!-- include stylesheets -->
+    <link rel="stylesheet" href="{{=URL('static','css/foundation.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap-theme.min.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/bootstrap-slider.css')}}"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{{=URL('static','css/web2py-bootstrap3.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/jquery-ui.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/mobile_view.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/ui-grid-unstable.css')}}" type="text/css">
+    <link rel="stylesheet" href="{{=URL('static','css/datepicker.css')}}"/>
+    <link rel="stylesheet" href="{{=URL('static','css/athena.css')}}"/>
+
+    <link rel="shortcut icon" href="{{=URL('static','images/favicon.png')}}" type="image/x-icon">
+    <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+
+    <!-- All JavaScript at the bottom, except for Modernizr which enables
+         HTML5 elements & feature detects -->
+    <script src="{{=URL('static','js/modernizr-2.8.3.min.js')}}"></script>
+    <!--[if lt IE 9]>
+        <script src="{{=URL('static','js/respond-1.4.2.min.js')}}"></script>
+        <![endif]-->
+    <!-- Favicons -->
+    {{include 'web2py_ajax.html'}} <!-- this includes jquery.js, calendar.js/.css and web2py.js -->
+    {{block head}}{{end}}
+    {{
+    # using sidebars need to know what sidebar you want to use
+    mc0 = 'col-md-12'
+    mc1 = 'col-md-9'
+    mc2 = 'col-md-6'
+    left_sidebar_enabled = globals().get('left_sidebar_enabled', False)
+    right_sidebar_enabled = globals().get('right_sidebar_enabled', False)
+    hot_deals_enabled = globals().get('hot_deals_enabled', False)
+    middle_column = {0: mc0, 1: mc1, 2: mc2}[
+      (left_sidebar_enabled and 1 or 0)+(right_sidebar_enabled and 1 or 0)
+      ]
+    }}
+  </head>
+  <body>
+    <!--[if lt IE 8]><p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p><![endif]-->
+    <div class="flash alert alert-dismissable">{{=response.flash or ''}}</div>
+    <!-- Navbar ======================================= -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container header">
+        
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{=URL('default','d1')}}">BeaverBuy</a>
+          {{#=response.logo or ''}}
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <div id="sliding-nav" class="container nav-menu-items fixed-top">
+            <div class="row">
+              <ul>
+<!--                 <li><a href="{{=URL('default','d1')}}">HOME</a></li> -->
+                <li><a href="{{=URL('default','d2')}}">HOW IT WORKS</a></li>
+                <li><a href="{{=URL('default','d3')}}">OUR SERVICES</a></li>
+                <li><a href="{{=URL('default','d7')}}">WHERE TO SHOP</a></li>
+                <li><a href="{{=URL('default','d8')}}">FORUM</a></li>
+                <li><a href="{{=URL('default','d5')}}">SHIPPING RATE</a></li>
+                <li><a href="{{=URL('default','d9')}}">FAQ</a></li>
+              </ul>
+              <div class="auth">
+                <a class="register black-button" href="{{=URL('default','d6#d6_regis')}}">Register</a>
+                <a class="signin trans-button" href="{{=URL('default','d6#d6_signin')}}">Sign in</a>
+              </div>
+            </div>
+          </div>
+        <div>
+      </div>
+    </nav>
+    <!-- Masthead ===================================== -->    
+    {{block header}}
+    {{end}}
+    <!-- Main ========================================= -->
+    <!-- Begin page content -->
+    <div class="container-fluid section_main">
+      {{if left_sidebar_enabled:}}
+        <div class="col-md-3 left-sidebar">
+            {{block left_sidebar}}
+            <h3>Left Sidebar</h3>
+            <p></p>
+            {{end}}
+        </div>
+      {{pass}}
+
+      <div class="{{=middle_column}}">
+        {{block center}}
+        {{include}}
+        {{end}}
+      </div>
+
+      {{if right_sidebar_enabled:}}
+        <div class="col-md-3 section_warehouse">
+            {{block right_sidebar}}
+              <h3>USA</h3>
+                <p>300 Boylston Ave E</p>
+                <p>SEATTLE WA 98102</p>
+                <p>USA</p>
+              <h3>Japan</h3>
+                <p>Shiodome City Center </p>
+                <p>1-5-2 Higashi-Shimbashi </p>
+                <p>Minato-ku, Tokyo </p>
+                <p>Japan</p>
+                <p>105-7123</p>
+              <h3>China</h3>
+                <p>400 Pan Yu Road</p>
+                <p>Shanghai</p>
+                <p>China, 200052</p>
+              <h3>Indonesia</h3>
+                <p>400 Pan Yu Road</p>
+                <p>Shanghai</p>
+                <p>Indonesia, 200052</p>
+            {{end}}
+        </div>
+      {{pass}}
+    </div>
+
+    {{if hot_deals_enabled:}}
+    <div class="container-fluid section_hot_deal">
+        <div class="{{=middle_column}}">
+            {{block hot_deals}}
+            <div class="deal_title_back">
+              <h1>Live Purchases & Hot Deals</h1>
+            </div>
+            <div class="exhibit deal_back">
+              <div class="deal col-md-3">
+                <h4 class="country">Japan</h4>
+                <div class="pic"><img src="{{=URL('static','images/japan.jpg')}}"  alt="japan" /></div>
+                <!-- <div class="buy4me_btn">Ship for Me!</div>  -->
+              </div>
+
+              <div class="deal col-md-3">
+                <h4 class="country">Europe</h4>
+                <div class="pic"><img src="{{=URL('static','images/Europe.jpg')}}"  alt="Europe" /></div>
+                <!-- <div class="buy4me_btn">Ship for Me!</div>  -->
+              </div>
+
+              <div class="deal col-md-3">
+                <h4 class="country">China</h4>
+                <div class="pic"><img src="{{=URL('static','images/china.jpg')}}"  alt="china" /></div>
+                <!-- <div class="buy4me_btn">Ship for Me!</div>  -->
+              </div>
+              
+<!--               <div class="deal col-md-3">
+                <h4 class="country">China</h4>
+                <div class="pic"><img src="{{=URL('static','images/tea.jpg')}}"  alt="tea" /></div>
+                <div class="buy4me_btn">Buy for Me!</div> 
+              </div> -->
+
+<!--               <div class="deal col-md-3">
+                <h4 class="country">USA</h4>
+                <div class="pic"><img src="{{=URL('static','images/xbox.jpg')}}"  alt="xbox" /></div>
+                <div class="buy4me_btn">Buy for Me!</div> 
+              </div> -->
+              
+              <div class="deal col-md-3">
+                <h4 class="country">USA</h4>
+                <div class="pic"><img src="{{=URL('static','images/USA.jpg')}}"  alt="USA" /></div>
+                <!-- <div class="buy4me_btn">Ship for Me!</div>  -->
+              </div>
+            </div>
+            {{end}}
+        </div>
+    </div>
+    {{pass}}
+
+
+    <footer>
+      <div class="footer-main" id="foot-div">
+        <div class="row">
+          <ul>
+            <li class="links">
+              <h3 style="color:white;">About Us</h3>
+              <a>Terms & conditions</a>
+              <a href="{{=URL('default','d2')}}">How it works?</a>
+            </li>
+            <li class="links">
+              <h3 style="color:white;">Warehouses</h3>
+              <a href="{{=URL('default','d4')}}">USA</a>
+              <a href="{{=URL('default','d4')}}">Japan</a>
+              <a href="{{=URL('default','d4')}}">China</a>
+              <a href="{{=URL('default','d4')}}">Indonesia</a>
+            </li>
+            <li class="links">
+              <h3 style="color:white;">Partner</h3>
+              <a href="http://www.taobao.com/">Taobao</a>
+              <a href="http://www.amazon.com/"><i class="fa fa-amazon"></i> Amazon</a>
+              <a href="http://www.jd.com/">JingDong</a>
+              <a href="http://www.ebay.com/">Ebay</a>
+            </li>
+            <li class="links">
+              <h3 style="color:white;">Customer Support</h3>
+              <a>Contact us</a>
+              <a>Suggestions</a>
+              <a href="{{=URL('default','d5')}}">Delivery service</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- The javascript =============================== -->
+
+    <script src="{{=URL('static','js/bootstrap.min.js')}}"></script>
+    <script src="{{=URL('static','js/web2py-bootstrap3.js')}}"></script>
+    <script src="{{=URL('static','js/bootstrap-datepicker.js')}}"></script>
+    <script src="{{=URL('static','js/athena.js')}}"></script>
+    <script src="{{=URL('static','js/bootstrap-slider.js')}}"></script>
+    <script src="{{=URL('static','js/app.js')}}"></script>
+    <script src="{{=URL('static','js/angular-animate.js')}}"></script>
+
+    <!-- font -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+
+  </body>
+</html>

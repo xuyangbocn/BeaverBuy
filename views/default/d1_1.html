@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+    <div class="d1_quote"  style="padding:10px 20px">
+        <p class="col-md-6">
+            <span>Ship To</span>
+            <select style="display:inline; width:50%">
+              <option value ="Singapore">Singapore</option>
+              <option value ="Indonesia">Indonesia</option>
+              <option value="China">China</option>
+            </select>
+        </p>
+        <p class="col-md-6">
+            <span>Buy From</span>
+            <select style="display:inline; width:50%">
+              <option value ="USA">USA</option>
+              <option value ="Japan">Japan</option>
+              <option value="China">China</option>
+            </select>
+        </p>
+        <div class="rate_short col-md-4">
+            <h3>Rate table</h3>
+            <table>
+                <tr>
+                    <td style="padding:10px; line-height:0.7">Express</td><td style="padding:10px; line-height:0.7">$6</td>
+                </tr>
+                <tr>
+                    <td style="padding:10px; line-height:0.7">Regular</td><td style="padding:10px; line-height:0.7">$3</td>
+                </tr>
+            </table>
+            <a href="{{=URL('default','d5')}}">Full delivery rate table</a>
+        </div>
+        <div class="live_quote col-md-8">
+            <h3>Estimate your cost</h3>
+            <input class="col-md-7" type="text" name="prod_url" placeholder="URL of product"/>
+            <input class="col-md-4" type="number" name="prod_quan" placeholder="Quantity" min="1"/>
+            <p class="col-md-11">-OR-</p>
+            <input class="col-md-4" type="text" name="prod_price" placeholder="Price"/>
+            <p class="col-md-2">$USD</p>
+            <input class="col-md-4" type="number" name="prod_wt" placeholder="Weight"  min="0"/>
+            <p class="col-md-1">kg</p>
+            <a class="black-button col-md-12"  style="width:initial"  href="{{=URL('default','d1', args=[2])}}">GET QUOTE!</a>              
+        </div>
+    </div>
+
+
+</html>

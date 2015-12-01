@@ -1,0 +1,175 @@
+{{extend 'layout.html'}}
+<script src="{{=URL('static','js/angular.js')}}"></script>
+<script src="{{=URL('static','js/angular-touch.js')}}"></script>
+<script src="{{=URL('static','js/angular-animate.js')}}"></script>
+<script src="{{=URL('static','js/csv.js')}}"></script>
+<script src="{{=URL('static','js/pdfmake.js')}}"></script>
+<script src="{{=URL('static','js/vfs_fonts.js')}}"></script>
+<script src="{{=URL('static','js/ui-grid.js')}}"></script>
+
+
+
+
+<div class="container-fluid">
+    <div class="row row-eq-height">
+        <div id="backToFullList" class="return_button" onclick="backToFullList()">
+            <div class="return_button_icon"><i class="fa fa-angle-double-left fa-2x"></i></div>
+            <div class="return_button_text">BACK<br>to<br>see<br>other<br>cases</div>
+        </div>
+        <div class="col-md-8">
+            <div class="board" ng-app="grid_trxAPP">
+                <div class="main_title_h2 ">SUSPICIOUS CASE PROFILE</div>
+
+                    <div class="summary_section">{{=vio}} - Case ID: {{=caseID}}</div>
+                <div class="grid_section">
+                    <div ng-controller="grid_trxCTRL">
+                        <div  ui-grid="assess_suspcase" ui-grid-pagination ui-grid-selection ui-grid-exporter class="grid"></div>
+                    </div>
+                </div>
+
+                    <div class="summary_section">Relevant documents</div>
+                <div class="grid_section">
+                    <form id="form_suspDoc" class="form-horizontal ng-pristine ng-valid" action="" enctype="multipart/form-data" method="post">
+                        <input name="_formname" type="hidden" value="form_uploader">
+                        <label class="control-label col-sm-3">Upload relevant docs</label>
+
+                        <div class="col-sm-9" id="upload_documents_bg">      
+                            <input class="upload" name="suspicious_case_document" type="file">
+                        </div>
+                        <div class="col-md-3 col-md-offset-3">
+                            <input type="submit" value="Upload" class="btn-primary btn-default">
+                        </div>
+                    </form>
+                    <br>
+                    <br>
+                    {{=grid_caseFile}}
+                </div>
+                <br>                
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="board">
+                <div class="main_title_h2">ASSESS SUSPICIOUS CASE</div>
+
+                <div id="form_susp">
+                    {{=form_thisSusp}}
+                </div>
+            </div>
+        </div>
+    </div>
+ </div>
+
+
+<script>
+
+
+function backToFullList(){
+    location.href="{{=URL('screeningHistory', 'viewSuspCases',vars=dict(scrID=scrID))}}";
+}
+
+$("#backToFullList").hover(
+    function(){
+        $(".return_button_text").css({"color":"#000000", "transition":"all 0.4s ease-out"});
+        $(".return_button").css({"background":"rgba(92,93,93,0.7)", "width":"5%", "transition":"all 0.4s ease-out", "min-width":"100px", });
+    },
+    function(){
+        $(".return_button_icon").css({"color":"#000000",  "transition":"all 0.4s ease-out"});
+        $(".return_button_text").css({"color":"transparent", "transition":"all 0.4s ease-out"});
+        $(".return_button").css({"background":"rgba(92,93,93,0.7)", "width":"1.2%","transition":"all 0.4s ease-out", "min-width":"20px", });
+    }
+)
+</script>
+
+
+<script>
+var grid_trxAPP = angular.module('grid_trxAPP', ['ngAnimate', 'ngTouch', 'ui.grid', 'ui.grid.exporter', 'ui.grid.pagination', 'ui.grid.cellNav']);
+grid_trxAPP.config(function($interpolateProvider){
+    $interpolateProvider.startSymbol('{!');
+    $interpolateProvider.endSymbol('!}');
+});
+
+grid_trxAPP.controller('grid_trxCTRL', ['$scope', '$http', 'uiGridConstants', function ($scope, $http, uiGridConstants) {
+
+    $scope.assess_suspcase = {
+
+        paginationPageSizes: [],
+        paginationPageSize: 6,    
+        enableSorting: true,
+        showGridFooter: false,
+        enableHighlighting: true,
+        enableColumnResizing: true,
+        enableGridMenu: true,
+        enableFiltering: false,
+        enableSelectAll: true,
+        minRowsToShow: 7,
+        // excessRows:10,
+
+        columnDefs: [
+            { field: 'TrxDate', width:'15%', displayName: 'Date',
+                sort: {
+                  direction: uiGridConstants.DESC,
+                  priority: 0,
+                }          
+            },
+            { field: 'RmtCountry', width:'8%', displayName: 'FROM'},
+            { field: 'RmtName', width:'15%', displayName: 'Remitter name'},
+            { field: 'RmtNric', width:'8%', displayName: 'NRIC'},
+            { field: 'BeneCountry', width:'8%', displayName: 'TO' },
+            { field: 'BeneName', width:'15%', displayName: 'Beneficiary name' },
+            { field: 'BeneNric', width:'8%', displayName: 'NRIC'},
+            { field: 'FrgCurrDesc', width:'8%', displayName: 'Currency' },
+            { field: 'FrgCurrAmt', width:'7%', displayName: 'Amount(Foreign)'},  
+            { field: 'SGDAmt', width:'8%', displayName: '(S$)'}  
+        ],
+
+        exporterCsvFilename: 'suspicious_case_profile.csv',
+        exporterPdfDefaultStyle: {fontSize: 9},
+        exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
+        exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
+        exporterPdfHeader: { text: "Suspicious Case Profile", style: 'headerStyle' },
+        exporterPdfFooter: function ( currentPage, pageCount ) {
+          return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
+        },
+
+        exporterPdfCustomFormatter: function ( docDefinition ) {
+          docDefinition.styles.headerStyle = { fontSize: 25, bold: true, color: [0,0,0]};
+          docDefinition.styles.footerStyle = { fontSize: 10, bold: true };
+          return docDefinition;
+        },
+        exporterPdfOrientation: 'portrait',
+        exporterPdfPageSize: 'LETTER',
+        exporterPdfMaxGridWidth: 500,
+        exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
+        onRegisterApi: function(gridApi){
+          $scope.gridApi = gridApi;
+        }
+      
+    };
+
+    $scope.assess_suspcase.data= {{=XML(grid_trx)}}
+    
+}]);
+
+</script>
+
+
+
+<script type="text/javascript">
+    
+document.getElementById("suspicious_case_date_resolved").classList.add('datepicker');
+    
+    // When the document is ready
+    $(document).ready(function () {
+        // datepicker auto close after selection
+        $('#suspicious_case_date_resolved').datepicker({
+            autoclose: true,
+        });
+        // tool tip to appear when hover
+        
+    });
+
+   
+</script>
+
+
+

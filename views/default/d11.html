@@ -1,0 +1,69 @@
+{{hot_deals_enabled=False}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <div class="row d11_title_back">
+        <h1>My profile </h1>
+    </div>
+    <div class="row d11_back">
+        <table class="my_profile col-md-10">
+            <tr>
+                <td style="width:30%;"><p>Email Addr:</p></td>
+                <td style="width:60%"><input type="text" name="user_email" value="jack.Green@gmail.com"/></td>
+            </tr>
+
+            <tr>
+                <td style="width:30%"><p>Country of Residence:</p></td>
+                <td style="width:60%"><input type="text" name="user_addr" value="Singapore"/></td>
+            </tr>
+
+            <tr>
+                <td style="width:30%"><p>Default Address:</p></td>
+                <td style="width:60%"><input type="text" name="user_addr1" value="#7-00, 6 Battery Road"/></td>
+            </tr>
+            <tr>
+                <td style="width:30%"></td>
+                <td style="width:60%"><input type="text" name="user_addr2" value="Singapore"/></td>
+            </tr>
+            <tr>
+                <td style="width:30%"></td>
+                <td style="width:60%"><input type="text" name="user_addr3" value="376521"/></td>
+            </tr> 
+            <tr>
+                <td style="width:30%"><p>Contact:</p></td>
+                <td style="width:60%"><input type="text" name="user_phone" value="+65 90099876"/></td>
+            </tr> 
+            <tr>
+                <td style="width:30%"></td>
+                <td style="width:60%"><a class="black-button col-md-4"  style="width:initial"  href="{{=URL('default','d11')}}">Update</a></td>
+            </tr> 
+        </table>              
+        
+        </div>
+    </div>
+<!--     <div class="row d3_flow_button">
+        <a href="{{=URL('default','d1')}}" style="width:initial" class="trans-button">Explore more</a>
+        <a href="{{=URL('default','d10')}}" style="width:initial" class="trans-button">Track orders</a>
+        <a href="{{=URL('default','d11')}}" style="width:initial" class="trans-button">My profile</a><br><br>
+        <a href="{{=URL('default','d3')}}" style="width:initial" class="black-button">Place another order</a>
+    </div> -->
+
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#ffffef"});
+});
+</script>
+
+</html>

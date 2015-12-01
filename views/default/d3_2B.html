@@ -1,0 +1,61 @@
+{{hot_deals_enabled=False}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <div class="row d3_2B_title_back">
+        <h1 style="font-weight:600">Buy-For-Me Cart </h1>
+    </div>
+    <div class="row d3_2B_back">
+        <div class="col-md-6 d3_2B_list">
+            <h3>Item List</h3>
+            <table class="d3_table">
+                <tr>
+                    <th>Product</th> <th>Price</th> <th>Quantity</th> <th>Color</th> <th>Size</th> 
+                </tr>
+                <tr>
+                    <td>Jacket</td> <td>$129</td> <td>1</td> <td>Grey</td> <td>XL</td> 
+                </tr>
+            </table>
+        </div>
+        <div class="col-md-5 d3_2B_charge">
+            <h3>Summary of Charges</h3>
+            <table class="col-md-12">
+                <tr>
+                    <td>Order Value</td>
+                    <td>$129</td>
+                </tr>
+                <tr>
+                    <td>Commission (5%)</td>
+                    <td>$6.4</td>
+                </tr>
+                <tr style="border-top:1px solid #000000; font-weight:600">
+                    <td>Subtotal</td>
+                    <td>$135.4</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="row d3_flow_button">
+        <a href="{{=URL('default','d3')}}" style="width:initial" class="trans-button">Back</a>
+        <a href="{{=URL('default','d3_3', args=['B'])}}" style="width:initial" class="black-button">Next</a>
+    </div>
+
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#ffffef"});
+});
+</script>
+
+</html>

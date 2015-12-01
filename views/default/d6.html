@@ -1,0 +1,62 @@
+{{hot_deals_enabled=False}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'js/jquery.easytabs.min.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <h1>Welcome to BeaverBuy</h1>
+
+    <div class='tab-container'>
+        <ul class="d6_title_back">
+            <li class='tab'><a href="#d6_regis">REGISTER</a></li>
+            <li class='tab'><a href="#d6_signin">SIGN IN</a></li>
+        </ul>
+
+        <div class="row d6_back">
+            <div class="col-md-12" id="d6_regis">
+                <form>
+                  <input class="col-md-6" type="text" name="fname" placeholder="FIRST NAME"/>
+                  <input class="col-md-6" type="text" name="lname"  placeholder="LAST NAME"/>
+                  <input class="col-md-12" type="text" name="email"  placeholder="EMAIL"/>
+                  <input class="col-md-12" type="text" name="loca"  placeholder="LOCATION"/>
+                  <input class="col-md-4" type="text" name="phone_pre"  placeholder="+"/>
+                  <input class="col-md-8" type="text" name="phone"  placeholder="MOBILE"/>
+                  <input class="col-md-12" type="text" name="pw"  placeholder="PASSWORD"/>
+                  <input class="col-md-12" type="text" name="pw_re"  placeholder="RE-ENTER PASSWORD"/>
+                  <a class="col-md-12 black-button" href="{{=URL('default','d1')}}">REGISTER</a>
+                </form>
+            </div>
+            <div class="col-md-12" id="d6_signin">
+                <form>
+                  <input class="col-md-12" type="text" name="email"  placeholder="EMAIL"/>
+                  <input class="col-md-12" type="text" name="pw"  placeholder="PASSWORD"/>
+                  <a class="col-md-12 black-button" href="{{=URL('default','d1')}}">SIGN IN</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#ff8200"});
+    $(".section_main").css({"background-color":"#ffffff"});
+});
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.tab-container').easytabs();
+    });
+</script>
+
+
+</html>

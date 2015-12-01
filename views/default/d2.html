@@ -1,0 +1,52 @@
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <div class="d2_title_back">
+        <h1>How It Works</h1>
+    </div>
+    <div class="d2_back">
+        <img src="{{=URL('static','images/how_it_works_3.png')}}">
+    </div>
+    <a class="d2_beaverWH" href="{{=URL('default','d4')}}">BeaverBuy<br>Warehouse</a>
+    <div class="d2_step_one">
+        <p>1. Tell us the URL of the product</p>
+    </div>
+    <div class="d2_step_Btwo">
+        <p>2. Option B - Buy For Me</p>
+        <ul>
+            <li>Make payment for product as well as shipping at our website</li>
+        </ul>
+    </div>
+
+    <div class="d2_step_Stwo">
+        <p>2. Option A - Ship For Me</p>
+        <ul>
+            <li>Make purchase directly from online store</li>
+            <li>Enter our warehouse address as the shipping address</li>
+            <li>Inform us the order number and tracking number</li>
+        </ul>
+    </div>
+
+    <div class="d2_step_three">
+        <p>3. International delivery of your goods by BeaverBuy.</p>
+    </div>
+    <a class="trans-button d2_register" href="{{=URL('default','d6')}}">REGISTER NOW!</a>
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#d2eaec"});
+});
+</script>
+
+</html>

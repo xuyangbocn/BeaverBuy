@@ -1,0 +1,149 @@
+{{extend 'layout.html'}}
+
+<script src="{{=URL('static','js/angular.js')}}"></script>
+<script src="{{=URL('static','js/angular-touch.js')}}"></script>
+<script src="{{=URL('static','js/angular-animate.js')}}"></script>
+<script src="{{=URL('static','js/csv.js')}}"></script>
+<script src="{{=URL('static','js/pdfmake.js')}}"></script>
+<script src="{{=URL('static','js/vfs_fonts.js')}}"></script>
+<script src="{{=URL('static','js/ui-grid.js')}}"></script>
+  
+
+
+<div class="container-fluid" ng-app="grid_filteredSuspCaseAPP">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="board" ng-controller="grid_filteredSuspCaseCTRL">
+                <div class="main_title_h2">SUSPICIOUS CASE RECORD</div>
+                <div class="input_section">
+                    <table>
+                        <tr>
+                            <td class="w2p_fl">
+                                <label for="selectDate" id="selectDate__label">Filter by screening date:</label>
+                            </td>
+                            <td class="w2p_fw date_picker_section">
+                                <input ng-model="dateMDL" ng-change="refreshGrid()" type="text" class="datepicker" id="selectDate" name='scr_date' readonly onfocus="this.removeAttribute('readonly');">
+                            </td>
+                            <td class="w2p_fl">
+                                <label for="selectStatus" id="selectStatus__label">Filter by status:</label>
+                            </td>
+                            <td class="w2p_fw date_picker_section">
+                                <select ng-model="statusMDL" ng-change="refreshGrid()" class='generic-widget' id='selectStatus' name='status'>
+                                    <option value="" >All</option>
+                                    {{for row in list_status:}}
+                                        <option value="{{=row}}">
+                                        {{=row}}
+                                        </option>
+                                    {{pass}}
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w2p_fl">
+                                <label for="search" id="search__label">Keyword search...</label>
+                            </td>
+                            <td class="w2p_fw date_picker_section">
+                                <input ng-model="keyMDL" ng-change="refreshGrid()" type="text" class="datepicker" id="search" name="key">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="grid_section">
+                    <div ui-grid="gridOptions" ui-grid-pagination ui-grid-selection ui-grid-exporter class="grid"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#selectDate').datepicker({
+            autoclose: true,
+            format:"dd-mm-yyyy",
+        });
+    });
+</script>
+
+
+<script>
+var grid_filteredSuspCaseAPP = angular.module('grid_filteredSuspCaseAPP', ['ngAnimate', 'ngTouch', 'ui.grid', 'ui.grid.exporter', 'ui.grid.pagination', 'ui.grid.cellNav']);
+grid_filteredSuspCaseAPP.config(function($interpolateProvider){
+    $interpolateProvider.startSymbol('{!');
+    $interpolateProvider.endSymbol('!}');
+});
+//var detailsCellTemplate = '<a href={!row.entity.details!}';
+
+grid_filteredSuspCaseAPP.controller('grid_filteredSuspCaseCTRL', ['$scope', '$http', '$filter', 'uiGridConstants', function ($scope, $http, $filter, uiGridConstants) {
+        var grid_data = {{=XML(grid_filteredSuspCase)}}
+        $scope.gridOptions = {
+            paginationPageSizes: [25, 50, 100],
+            paginationPageSize: 25,    
+            enableSorting: true,
+            showGridFooter: false,
+            enableHighlighting: true,
+            enableColumnResizing: true,
+            enableGridMenu: true,
+            useExternalFiltering: false,
+            enableSelectAll: true,
+            // enableFiltering: true,
+            rowHeight: 70,
+            minRowsToShow: 26,
+
+            columnDefs: [
+                // { field: 'id', width: '5%'},
+                { field: 'date_screened', displayName: 'Date', width:'9%',
+                    sort: {
+                      direction: uiGridConstants.DESC,
+                      priority: 0,
+                    }
+                },
+                { field: 'vio_id', displayName: 'Issue', width:'30%',
+                    cellTemplate: '<div class="ui-grid-cell-contents wrap" white-space: normal>{!COL_FIELD!}</div>'
+                },
+                { field: 'description', width:'35%', 
+                    cellTemplate: '<div class="ui-grid-cell-contents wrap" white-space: normal>{!COL_FIELD!}</div>'
+                },
+                { field: 'status', width:'10%' },
+                { field: 'details', width:'16%',
+                    cellTemplate: '<a href="{!COL_FIELD!}" id="show_cases_details">Involve {!row.entity.ctTrx!} transactions</a>'
+                }
+            ],
+            data: grid_data,
+
+            exporterCsvFilename: 'suspicious_cases_list.csv',
+            exporterPdfDefaultStyle: {fontSize: 9},
+            exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
+            exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
+            exporterPdfHeader: { text: "Suspicious Cases List", style: 'headerStyle' },
+            exporterPdfFooter: function ( currentPage, pageCount ) {
+                  return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
+                },
+
+            exporterPdfCustomFormatter: function ( docDefinition ) {
+                  docDefinition.styles.headerStyle = { fontSize: 25, bold: true, color: [0,0,0]};
+                  docDefinition.styles.footerStyle = { fontSize: 10, bold: true };
+                  return docDefinition;
+                },
+            exporterPdfOrientation: 'portrait',
+            exporterPdfPageSize: 'A4',
+            exporterPdfMaxGridWidth: 500,
+            exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
+            onRegisterApi: function(gridApi){
+                  $scope.gridApi = gridApi;
+                }
+        };
+    $scope.refreshGrid = function() {
+        $scope.gridOptions.data = grid_data;
+        $scope.gridOptions.data = $filter('filter')($scope.gridOptions.data, $scope.dateMDL, undefined);
+        if ($scope.statusMDL!==""){
+            $scope.gridOptions.data = $filter('filter')($scope.gridOptions.data, $scope.statusMDL, true);
+        }
+        $scope.gridOptions.data = $filter('filter')($scope.gridOptions.data, $scope.keyMDL, undefined);
+    };
+}]);
+
+</script>

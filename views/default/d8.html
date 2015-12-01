@@ -1,0 +1,55 @@
+{{hot_deals_enabled=True}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <div class="row d8_title_back">
+        <h1>Forum</h1>
+    </div>
+    <div class="row d8_back">
+        <ul class="col-md-6" style="text-align:center;">
+            <li style="font-weight:600" >USA</a></li>
+            <li style="font-weight:600" class="co-md-2">China</li>
+            <li style="font-weight:600" class="co-md-2">Japan</li>
+            <li style="font-weight:600" class="co-md-2">Europe</li>
+            <li style="font-weight:600" class="co-md-2">Indonesia</li>
+            <li style="font-weight:600" class="co-md-2">Australia</li>
+        </ul>
+        <ul class="col-md-6" style="text-align:center; border-left:1px dashed #000000;">
+            <li class="co-md-3">Appliances</li>
+            <li class="co-md-3">Books</li>
+            <li class="co-md-3">Baby</li>
+            <li class="co-md-3">Clothing, Shoes, Jewellry</li>
+            <li class="co-md-3">Electronics</li>
+            <li class="co-md-3">Health & Personal Care</li>
+            <li class="co-md-3">Grocery</li>
+            <li class="co-md-3">Office Products</li>
+            <li class="co-md-3">Pets</li>
+            <li class="co-md-3">Sports & Outdoors</li>
+            <li class="co-md-3">Travel</li>
+        </ul>
+    </div>
+    <div class="row">
+        <img style="" src="{{=URL('static','images/skyline.png')}}"/>
+    </div>
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#f9f9f9"});
+    $(".section_main").css({"background-image":"{{=URL('static','images/images.png')}}"});
+});
+</script>
+
+
+
+</html>

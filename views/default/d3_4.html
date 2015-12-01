@@ -1,0 +1,49 @@
+{{hot_deals_enabled=False}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <div class="row d3_4_title_back">
+        <h1 style="font-weight:600">Summary for {{='Buy-For-Me Order' if request.args[0]=='B' else 'Ship-For-Me Order'}}</h1>
+    </div>
+    <div class="row d3_4_back">
+        <table class="col-md-7">
+            <tr><td style="padding:10px; line-height:0.9">Cost of purchase</td><td style="padding:10px; line-height:0.9">{{='$129' if request.args[0]=='B' else 'N/A'}}</td></tr>
+            <tr><td style="padding:10px; line-height:0.9">Domestic shipping</td><td style="padding:10px; line-height:0.9">{{='$0' if request.args[0]=='B' else 'N/A'}}</td></tr>
+            <tr><td style="padding:10px; line-height:0.9">Buy-For-Me fee</td><td style="padding:10px; line-height:0.9">{{='$6.4' if request.args[0]=='B' else 'N/A'}}</td></tr>
+            <tr><td style="padding:10px; line-height:0.9">INTL shipping</td><td style="padding:10px; line-height:0.9">$4.6</td></tr>
+            <tr><td style="padding:10px; line-height:0.9">Customs fee</td><td style="padding:10px; line-height:0.9">$12.9</td></tr>
+            <tr style="border-top:1px solid #000000; font-weight:600"><td style="padding:10px; line-height:0.9">Total</td><td style="padding:10px; line-height:0.9">{{='$152.9' if request.args[0]=='B' else '$17.5'}}</td></tr>
+        </table>
+        <div class="col-md-3">
+            <span><img src="{{=URL('static','images/pay.png')}}"/></span>
+        </div>
+    </div>
+    <div class="row d3_flow_button">
+        {{if request.args and request.args[0]=='B':}}
+            <a href="{{=URL('default','d3_3', args=['B'])}}" style="width:initial" class="trans-button">Back</a>
+            <a href="{{=URL('default','d3_5', args=['S'])}}" style="width:initial" class="black-button">Confirm Payment</a>
+        {{elif request.args and request.args[0]=='S':}}
+            <a href="{{=URL('default','d3_3', args=['S'])}}" style="width:initial" class="trans-button">Back</a>
+            <a href="{{=URL('default','d3_5', args=['S'])}}" style="width:initial" class="black-button">Confirm Payment</a>
+        {{pass}}
+    </div>
+
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#ffffef"});
+});
+</script>
+
+</html>

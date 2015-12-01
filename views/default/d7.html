@@ -1,0 +1,40 @@
+{{hot_deals_enabled=True}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <div class="row d7_title_back">
+        <h1>Where To Shop?</h1>
+    </div>
+    <div class="row d7_back">
+        <ul>
+            <li class="col-md-4"><a href="http://www.amazon.cn" ><img src="{{=URL('static','images/amazoncn.png')}}"/> - Amazon</a></li>
+            <li class="col-md-4"><a href="http://www.dangdang.com" ><img src="{{=URL('static','images/dangdang.png')}}"/> - 当当</a></li>
+            <li class="col-md-4"><a href="http://www.eachnet.com/" ><img src="{{=URL('static','images/eachnet.png')}}"/> - 易趣</a></li>
+            <li class="col-md-4"><a href="http://www.jd.com" ><img src="{{=URL('static','images/jingdong.png')}}"/> - 京东</a></li>
+            <li class="col-md-4"><a href="http://www.m18.com" ><img src="{{=URL('static','images/m18.png')}}"/> - M18</a></li>
+            <li class="col-md-4"><a href="http://www.mbaobao.com" ><img src="{{=URL('static','images/mbaobao.png')}}"/> - 麦包包</a></li>
+            <li class="col-md-4"><a href="http://www.taobao.com" ><img src="{{=URL('static','images/taobao.png')}}"/> - 淘宝</a></li>
+            <li class="col-md-4"><a href="http://www.tmall.com" ><img src="{{=URL('static','images/tmall.png')}}"/> - Tmall</a></li>
+        </ul>
+    </div>
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#fdb06c"});
+});
+</script>
+
+
+
+</html>

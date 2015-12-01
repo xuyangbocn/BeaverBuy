@@ -1,0 +1,80 @@
+<!-- <script src="{{=URL('static','js/angular.js')}}"></script>
+<script src="{{=URL('static','js/angular-touch.js')}}"></script>
+ <script src="{{=URL('static','js/angular-animate.js')}}"></script>
+<script src="{{=URL('static','js/csv.js')}}"></script>
+<script src="{{=URL('static','js/pdfmake.js')}}"></script>
+<script src="{{=URL('static','js/vfs_fonts.js')}}"></script>
+<script src="{{=URL('static','js/ui-grid.js')}}"></script>
+
+<div ng-app="grid_filteredSuspCaseAPP">
+    <div ng-controller="grid_filteredSuspCaseCTRL">
+        <div  ui-grid="filteredSuspCase" ui-grid-pagination ui-grid-selection ui-grid-exporter class="grid"></div>
+    </div>
+</div>
+
+
+<script>
+var grid_filteredSuspCaseAPP = angular.module('grid_filteredSuspCaseAPP', ['ngAnimate', 'ngTouch', 'ui.grid', 'ui.grid.exporter', 'ui.grid.pagination', 'ui.grid.cellNav']);
+//var detailsCellTemplate = '<a href={!row.entity.details!}';
+
+grid_filteredSuspCaseAPP.controller('grid_filteredSuspCaseCTRL', ['$scope', '$http', 'uiGridConstants', function ($scope, $http, uiGridConstants) {
+
+  
+
+    $scope.filteredSuspCase = {
+
+    paginationPageSizes: [5, 10, 75],
+    paginationPageSize: 5,    
+    enableSorting: true,
+    showGridFooter: false,
+    enableHighlighting: true,
+    enableColumnResizing: true,
+    enableGridMenu: true,
+    enableFiltering: false,
+
+    columnDefs: [
+      { field: 'TrxDate', width:'15%', displayName: 'Date' },
+      { field: 'RmtCountry', width:'8%', displayName: 'FROM'},
+      { field: 'RmtName', width:'15%', displayName: 'Remitter name'},
+      { field: 'RmtNric', width:'8%', displayName: 'NRIC'},
+      { field: 'BeneCountry', width:'8%', displayName: 'TO' },
+      { field: 'BeneName', width:'15%', displayName: 'Beneficiary name' },
+      { field: 'BeneNric', width:'8%', displayName: 'NRIC'},
+      { field: 'FrgCurrDesc', width:'8%', displayName: 'Currency' },
+      { field: 'FrgCurrAmt', width:'7%', displayName: 'Amount(Forgein)'},  
+      { field: 'SGDAmt', width:'8%', displayName: '(S$)'}  
+    ],
+
+    enableGridMenu: true,
+    enableSelectAll: true,
+    exporterCsvFilename: 'suspicious_case_profile.csv',
+    exporterPdfDefaultStyle: {fontSize: 9},
+    exporterPdfTableStyle: {margin: [30, 30, 30, 30]},
+    exporterPdfTableHeaderStyle: {fontSize: 10, bold: true, italics: true, color: 'red'},
+    exporterPdfHeader: { text: "Suspicious Case Profile", style: 'headerStyle' },
+    exporterPdfFooter: function ( currentPage, pageCount ) {
+      return { text: currentPage.toString() + ' of ' + pageCount.toString(), style: 'footerStyle' };
+    },
+
+    exporterPdfCustomFormatter: function ( docDefinition ) {
+      docDefinition.styles.headerStyle = { fontSize: 25, bold: true, color: [0,0,0]};
+      docDefinition.styles.footerStyle = { fontSize: 10, bold: true };
+      return docDefinition;
+    },
+    exporterPdfOrientation: 'portrait',
+    exporterPdfPageSize: 'LETTER',
+    exporterPdfMaxGridWidth: 500,
+    exporterCsvLinkElement: angular.element(document.querySelectorAll(".custom-csv-link-location")),
+    onRegisterApi: function(gridApi){
+      $scope.gridApi = gridApi;
+    }
+  
+};
+
+    $scope.filteredSuspCase.data= {{=XML(grid_filteredSuspCase)}}
+    
+}]);
+
+</script>
+
+ -->{{=grid_filteredSuspCase}}

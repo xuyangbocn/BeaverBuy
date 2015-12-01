@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<body>
+    {{if request.args and request.args[0]=="B":}}
+        <table class="d3_table">
+            <tr>
+                <th>Product</th> <th>Price</th> <th>Quantity</th> <th>Color</th> <th>Size</th> 
+            </tr>
+            <tr>
+                <td>Jacket</td> <td>$129</td> <td>1</td> <td>Grey</td> <td>XL</td> 
+            </tr>
+        </table>
+        <a class="black-button"  style="width:initial" href="{{=URL('default','d3_2B')}}"> CHECK OUT</a>
+<!--     {{#elif request.args and request.args[0]=="S":}}
+        <table class="d3_table">
+            <tr>
+                <th>Product</th> <th>Quantity</th> <th>Weight</th> <th>Size</th>
+            </tr>
+            <tr>
+                <td>Jacket</td> <td>1</td> <td>2.0</td> <td>1.0</td> 
+            </tr>            
+        </table>
+        <a class="black-button"  style="width:initial" href="{{=URL('default','d3_2',args=['S'])}}"> CHECK OUT</a> -->
+    {{else:}}
+        <table class="d3_table">
+            <tr>
+                <th>Product</th> <th>Price</th> <th>Quantity</th> <th>Color</th> <th>Size</th> 
+            </tr>
+        </table>
+    {{pass}}
+</body>
+</html>

@@ -1,0 +1,48 @@
+{{hot_deals_enabled=False}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <div class="row d3_3_title_back">
+        {{if request.args and request.args[0]=='B':}}
+            <h1 style="font-weight:600">Delivery for Buy-For-Me order</h1>
+        {{elif request.args and request.args[0]=='S':}}
+            <h1 style="font-weight:600">Delivery for Ship-For-Me order</h1>
+        {{pass}}
+    </div>
+    <div class="row d3_3_back">
+        <strong class="col-md-12">1. Choose the delivery speed of international shipping</strong>
+        <input class="col-md-1" type="radio" name="shipping" value="std"/><p class="col-md-10">Standard Shipping</p><br>
+        <input class="col-md-1" type="radio" name="shipping" value="exp"/><p class="col-md-10">Express Shipping</p><br>
+        <strong class="col-md-12">2. Choose the last-mile delivery mode</strong>
+        <input class="col-md-1" type="radio" name="last_mile" value="self"/><p class="col-md-10">Self Collection</p><br>
+        <input class="col-md-1" type="radio" name="last_mile" value="home"/><p class="col-md-10">Home Delivery (addional $S2)</p><br>
+    </div>
+    <div class="row d3_flow_button">
+        {{if request.args and request.args[0]=='B':}}
+            <a href="{{=URL('default','d3_2B')}}" style="width:initial" class="trans-button">Back</a>
+            <a href="{{=URL('default','d3_4', args=['B'])}}" style="width:initial" class="black-button">Next</a>
+        {{elif request.args and request.args[0]=='S':}}
+            <a href="{{=URL('default','d3')}}" style="width:initial" class="trans-button">Back</a>
+            <a href="{{=URL('default','d3_4', args=['S'])}}" style="width:initial" class="black-button">Next</a>
+        {{pass}}
+    </div>
+
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#ffffef"});
+});
+</script>
+
+</html>

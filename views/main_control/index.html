@@ -1,0 +1,514 @@
+{{extend 'layout.html'}}
+<!--    frontend    1,2,3,4,5,6,7,8
+        backend     1,2,5,6,3,4,7,8 -->
+<script src="{{=URL('static','js/slider.js')}}"></script>
+
+
+<div class="container-fluid">
+    <div class="row" >
+        <div class="col-md-10">
+            <div class="board">
+                <div class="main_title_h2">NEW SCREENING</div>
+                <form role="form" action={{=URL('display_flags')}} name="trans_report" class="new_screening_form">
+                    <div class="input_section">
+                        <div class="date date_picker_section">
+                            <input type="text" class="datepicker" name="scr_date" placeholder="Select Date" id="new_screen_date"  required>
+                        </div>
+                    </div>
+
+                    <div class="main_control_section">
+                        <div class="col-md-6">
+                            <div class=" col-md-12">
+                                <div class="rule_title_section">
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" name={{=rules[0]["notation"]}} id="check01" checked>
+                                        <span class="rule_text"  data-toggle="tooltip" 
+                                                            data-placement="bottom"
+                                                            title="{{=rules[0]['description']}}"
+                                                            class="info_tooltip">
+                                                            Rule 1 - {{=rules[0]["title"]}}
+                                        </span>
+                                    </div>
+                                </div>
+
+                                <div id="row_01">
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Suspicious if Number of Transactions Exceeds</label>
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule1_slider_1; initial: {{=dict_para['r1_1']}}; start: 1; end: 50;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule1_slider_1" value name="r1_1" min="1" max="50"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screen for Transactions Less Than ($0-1,000)</label>
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule1_slider_2; initial: {{=dict_para['r1_2']}}; start: 1; end: 1000;"
+                                                 id='show-me'>
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label><br>
+                                            <i class="fa fa-usd"></i>
+                                            <input type="number" id="rule1_slider_2" value={{=dict_para['r1_2']}} name="r1_2" min="1" max="1000"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screen for Transactions within Past (days)</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule1_slider_3; initial: {{=dict_para['r1_3']}}; start: 1; end: 30;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule1_slider_3" value={{=dict_para['r1_3']}} name="r1_3" min="1" max="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------END RULE 01---------->
+
+
+
+                            <div class="col-md-12">
+                                <div class="rule_title_section">
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" name={{=rules[1]["notation"]}} id="check02" checked>
+                                        <span class="rule_text"  data-toggle="tooltip" 
+                                                            data-placement="bottom"
+                                                            title="{{=rules[1]['description']}}"
+                                                            class="info_tooltip">
+                                                            Rule 2 - {{=rules[1]["title"]}}
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div id="row_02">
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Suspicious if Number of Transactions Exceeds</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule2_slider_1; initial: {{=dict_para['r2_1']}}; start: 1; end: 50;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule2_slider_1" value={{=dict_para['r2_1']}} name="r2_1" min="1" max="50"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screen for Transactions within Past (days)</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule2_slider_2; initial: {{=dict_para['r2_2']}}; start: 1; end: 30;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule2_slider_2" value={{=dict_para['r2_2']}} name="r2_2" min="1" max="30"/>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <!------------END RULE 02---------->
+
+
+
+                            <div class="col-md-12">
+                                <div class="rule_title_section">
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" name={{=rules[4]["notation"]}} id="check05" checked>
+                                        <span class="rule_text"  data-toggle="tooltip" 
+                                                            data-placement="bottom"
+                                                            title="{{=rules[4]['description']}}"
+                                                            class="info_tooltip">
+                                                            Rule 3 - {{=rules[4]["title"]}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="row_05">
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Suspicious if Number of Beneficiaries Exceeds</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule5_slider_1; initial: {{=dict_para['r5_1']}}; start: 1; end: 50;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule5_slider_1" value={{=dict_para['r5_1']}} name="r5_1" min="1" max="50"/>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screen for Transactions within Past (days)</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule5_slider_2; initial: {{=dict_para['r5_2']}}; start: 1; end: 30;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule5_slider_2" value={{=dict_para['r5_2']}} name="r5_2" min="1" max="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------END RULE 05---------->
+
+
+
+                            <div class="col-md-12">
+                                <div class="rule_title_section">
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" name={{=rules[5]["notation"]}} id="check06" checked>
+                                        <span class="rule_text"  data-toggle="tooltip" 
+                                                            data-placement="bottom"
+                                                            title="{{=rules[5]['description']}}"
+                                                            class="info_tooltip">
+                                                            Rule 4 - {{=rules[5]["title"]}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="row_06">
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Suspicious if Number of Remitters Exceeds</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule6_slider_1; initial: {{=dict_para['r6_1']}}; start: 1; end: 50;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule6_slider_1" value={{=dict_para['r6_1']}} name="r6_1" min="1" max="50"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screen for Transactions within Past (days)</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule6_slider_2; initial: {{=dict_para['r6_2']}}; start: 1; end: 30;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule6_slider_2" value={{=dict_para['r6_2']}} name="r6_2" min="1" max="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------END RULE 06---------->
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="col-md-12">
+                                <div class="rule_title_section">
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" name={{=rules[2]["notation"]}} id="check03" checked>
+                                        <span class="rule_text"  data-toggle="tooltip" 
+                                                            data-placement="bottom"
+                                                            title="{{=rules[2]['description']}}"
+                                                            class="info_tooltip">
+                                                            Rule 5 - {{=rules[2]["title"]}}
+                                        </span>
+                                    </div>
+                                </div>
+
+
+                                <div id="row_03">
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screen for Transactions within Past (days)</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule3_slider_1; initial: {{=dict_para['r3_1']}}; start: 1; end: 30;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule3_slider_1" value={{=dict_para['r3_1']}} name="r3_1" min="1" max="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------END RULE 03---------->
+
+
+
+                            <div class="col-md-12">
+                                <div class="rule_title_section">
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" name={{=rules[3]["notation"]}} id="check04" checked>
+                                        <span class="rule_text"  data-toggle="tooltip" 
+                                                            data-placement="bottom"
+                                                            title="{{=rules[3]['description']}}"
+                                                            class="info_tooltip">
+                                                            Rule 6 - {{=rules[3]["title"]}}
+                                        </span>
+                                    </div>
+                                </div>
+                                <div id="row_04">
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screen for Transactions within Past (days)</label>
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule4_slider_1; initial: {{=dict_para['r4_1']}}; start: 1; end: 30;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule4_slider_1" value={{=dict_para['r4_1']}} name="r4_1" min="1" max="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------END RULE 04---------->
+
+
+
+                            <div class="col-md-12">
+                                <div class="rule_title_section">
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" name={{=rules[6]["notation"]}} id="check07" checked>
+                                        <span class="rule_text"  data-toggle="tooltip" 
+                                                            data-placement="bottom"
+                                                            title="{{=rules[6]['description']}}"
+                                                            class="info_tooltip">
+                                                            Rule 7 - {{=rules[6]["title"]}}
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div id="row_07">
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screen for Transactions within Past (days)</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule7_slider_1; initial: {{=dict_para['r7_1']}}; start: 1; end: 30;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule7_slider_1" value={{=dict_para['r7_1']}} name="r7_1" min="1" max="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------END RULE 07---------->
+
+
+
+                            <div class="col-md-12">
+                                <div class="rule_title_section">
+                                    <div class="col-xs-12">
+                                        <input type="checkbox" name={{=rules[7]["notation"]}} id="check08" checked>
+                                        <span class="rule_text"  data-toggle="tooltip" 
+                                                            data-placement="bottom"
+                                                            title="{{=rules[7]['description']}}"
+                                                            class="info_tooltip">
+                                                            Rule 8 - {{=rules[7]["title"]}}
+                                        </span>
+                                    </div>
+
+                                </div>
+                                <div id="row_08">
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screen for Transactions less than</label>
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule8_slider_1; initial: {{=dict_para['r8_1']}}; start: 1; end: 1000;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label><br>
+                                            <i class="fa fa-usd"></i>
+                                            <input type="number" id="rule8_slider_1" value={{=dict_para['r8_1']}} name="r8_1" min="1" max="1000"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Suspicious if Potential Borrower Exceeds</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule8_slider_3; initial:  {{=dict_para['r8_3']}}; start: 1; end: 20;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule8_slider_3" value= {{=dict_para['r8_3']}} name="r8_3" min="1" max="20"/>
+                                        </div>
+                                    </div>
+
+                                    <div class="rule_slider">
+                                        <div class="col-xs-9">
+                                            <label>Screening for Transactions within Past (days)</label>
+
+                                            <div class="range-slider" data-slider
+                                                 data-options="display_selector: #rule8_slider_2; initial:  {{=dict_para['r8_2']}}; start: 1; end: 30;">
+                                                <span class="range-slider-handle" role="slider" tabindex="0"></span>
+                                                <span class="range-slider-active-segment"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-3">
+                                            <label>Value</label>
+                                            <input type="number" id="rule8_slider_2" value= {{=dict_para['r8_2']}} name="r8_2" min="1" max="30"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------END RULE 08---------->
+                        </div>
+
+                        <div class="col-sm-12" id="start-screening_button">
+                            <button type="submit" class="btn btn-primary btn-lg">Start Screening 
+                                <span class="glyphicon glyphicon-chevron-right pull-right"
+                                    style="padding-right: 10px;"></span></button>
+                        </div>
+                        <br>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-2">
+            <div class="fixed_section">
+                <div class="board">
+                    <div class="summary_section">Previous Parameter Setting</div>
+                    <div class="grid_section">
+                        <ul id="past_setup_list">Loading...</ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // When the document is ready
+    $(document).ready(function () {
+        // datepicker auto close after selection
+        $('#new_screen_date').datepicker({
+            autoclose: true,
+        });
+        // tool tip to appear when hover
+        $('[data-toggle="tooltip"]').tooltip();
+        // load past setup list
+        var past_setup_list = $('#past_setup_list');
+        past_setup_list.empty();
+        var past_setup = {{=past_setup}};
+        for (var i = 0; i < past_setup.length; i++) {
+            past_setup_list.append('<li>' + '<a href='+ past_setup[i].url + '>'+ past_setup[i].scr_date + '</a>' + '</li>');
+        };
+        //fadeIn/Out slider section according to rule selection 
+        {{for c in range(1, 9):}}
+            toggle("{{=dict_para['r'+str(c)]}}", '#check0'+{{=str(c)}}, '#row_0'+{{=str(c)}})
+        {{pass}}
+
+    });
+
+    function toggle(rule, checkboxID, rowID) {
+        if(rule==="True"){
+            $(checkboxID).prop('checked', true);
+            $(rowID).fadeIn();
+        }else{
+            $(checkboxID).prop('checked',false);
+            $(rowID).fadeOut();
+        }
+    }
+
+</script>
+
+
+<script>
+    $(document).foundation().foundation('joyride', 'start');
+
+        // onclick action of checkbox on new screening page
+    document.getElementById('check01').onclick = function () {
+        toggleSub('#'+this.id, '#row_01');
+    };    
+    document.getElementById('check02').onclick = function () {
+        toggleSub('#'+this.id, '#row_02');
+    };    
+    document.getElementById('check03').onclick = function () {
+        toggleSub('#'+this.id, '#row_03');
+    };    
+    document.getElementById('check04').onclick = function () {
+        toggleSub('#'+this.id, '#row_04');
+    };    
+    document.getElementById('check05').onclick = function () {
+        toggleSub('#'+this.id, '#row_05');
+    };    
+    document.getElementById('check06').onclick = function () {
+        toggleSub('#'+this.id, '#row_06');
+    };    
+    document.getElementById('check07').onclick = function () {
+        toggleSub('#'+this.id, '#row_07');
+    };
+    document.getElementById('check08').onclick = function () {
+        toggleSub('#'+this.id, '#row_08');
+    };
+
+    function toggleSub(checkboxID, rowID) {
+        if ($(checkboxID).prop("checked")){
+            $(rowID).fadeIn();
+        }else{
+            $(rowID).fadeOut();
+        }
+    }
+</script>
+
+
+
+
+
+

@@ -1,0 +1,46 @@
+{{hot_deals_enabled=True}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <div class="row d10_title_back">
+        <h1>Track my orders </h1>
+    </div>
+    <div class="row d10_back">
+        <table class="d3_table col-md-11">
+            <tr>
+                <th>Order number</th> <th>Product</th> <th>Price</th> <th>Quantity</th> <th>Color</th> <th>Size</th> <th>Status</th> <th>Estimated delivery</th>
+            </tr>
+            <tr> 
+                <td>BB0010102</td> <td>Jacket</td> <td>$129</td> <td>1</td> <td>Grey</td> <td>XL</td> <td>Order in process</td> <td>In 5 days</td>
+            </tr>
+            <tr>
+                <td>BB0020103</td> <td>Ipad PRO</td> <td>$998</td> <td>1</td> <td>Space Grey</td> <td>-</td> <td>Customs clearance</td> <td>In 2 days</td>
+            </tr>
+        </table>
+    </div>
+<!--     <div class="row d3_flow_button">
+        <a href="{{=URL('default','d1')}}" style="width:initial" class="trans-button">Explore more</a>
+        <a href="{{=URL('default','d10')}}" style="width:initial" class="trans-button">Track orders</a>
+        <a href="{{=URL('default','d11')}}" style="width:initial" class="trans-button">My profile</a><br><br>
+        <a href="{{=URL('default','d3')}}" style="width:initial" class="black-button">Place another order</a>
+    </div> -->
+
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#ffffef"});
+});
+</script>
+
+</html>

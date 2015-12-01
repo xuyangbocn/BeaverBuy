@@ -1,0 +1,47 @@
+@media screen and (max-width: 992px) {
+
+    #login_section {
+        width: 60% !important;
+    }
+
+    .newscreening_title{
+        font-size: 10px!important;
+    }
+
+
+    .navbar-inverse .navbar-nav > li > a {
+        font-size: 10px;
+        font-family: "Infini", Helvetica, Arial, sans-serif;
+    }
+
+    .dropdown-menu > li > a{
+        font-size: 10px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    #login_section {
+        width: 60% !important;
+    }
+    .newscreening_title{
+        font-size: 18px!important;
+    }
+}
+
+@media screen and (max-width: 554px) {
+
+    #login_section {
+        width: 100% !important;
+    }
+
+    .navbar-inverse .navbar-nav > li > a {
+        font-size: 14px;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .newscreening_title{
+        font-size: 18px!important;
+    }
+}

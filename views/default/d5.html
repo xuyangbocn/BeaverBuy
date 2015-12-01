@@ -1,0 +1,73 @@
+{{hot_deals_enabled=False}}
+{{extend 'layoutB.html'}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.common.min.css')}}" />
+    <link rel="stylesheet" href="{{=URL('static', 'styles/kendo.default.min.css')}}" />
+
+    <script src="{{=URL('static', 'js/jquery.js')}}"></script>
+    <script src="{{=URL('static', 'scripts/kendo.all.min.js')}}"></script>
+</head>
+<body>
+    <div class="d5_title_back">
+        <h1>Our Delivery Rate</h1>
+    </div>
+    <div class="d5_back">
+        <table>
+            <tr>
+                <th>Source</th> <th>Destination</th> <th>Mode</th> <th>Product</th> <th>Price <br>(S$ first 500g)</th> <th>Price <br>(IDR first 500g)</th> <th>Per 500g thereafter <br>(S$)</th>  <th>Per 500g thereafter <br>(IDR)</th> <th>Time <br>(Days)</th>  
+            </tr>
+            <tr>
+                <td>China</td> <td>Singapore</td> <td>Air</td> <td>General</td> <td>6</td> <td>36000</td> <td>5</td>  <td>30000</td> <td>5</td>
+            </tr>
+            <tr>
+                <td>China</td> <td>Singapore</td> <td>Air</td> <td>General</td> <td>4</td> <td>24000</td> <td>3</td>  <td>18000</td> <td>7</td>
+            </tr>
+            <tr>
+                <td>US</td> <td>Singapore</td> <td>Air</td> <td>General</td> <td>10</td> <td>60000</td> <td>8</td>  <td>48000</td> <td>7</td>
+            </tr>
+            <tr>
+                <td>US</td> <td>Singapore</td> <td>Air</td> <td>General</td> <td>8</td> <td>48000</td> <td>6</td>  <td>30000</td> <td>9</td>
+            </tr>
+            <tr>
+                <td>Japan</td> <td>Singapore</td> <td>Air</td> <td>General</td> <td>15</td> <td>90000</td> <td>12</td>  <td>72000</td> <td>7</td>
+            </tr>
+            <tr>
+                <td>Japan</td> <td>Singapore</td> <td>Air</td> <td>General</td> <td>12</td> <td>72000</td> <td>10</td>  <td>60000</td> <td>9</td>
+            </tr>
+            <tr>
+                <td>China</td> <td>Indonesia</td> <td>Air</td> <td>General</td> <td>12</td> <td>72000</td> <td>10</td>  <td>60000</td> <td>7</td>
+            </tr>
+            <tr>
+                <td>China</td> <td>Indonesia</td> <td>Air</td> <td>General</td> <td>10</td> <td>60000</td> <td>8</td>  <td>48000</td> <td>9</td>
+            </tr>
+            <tr>
+                <td>US</td> <td>Indonesia</td> <td>Air</td> <td>General</td> <td>16</td> <td>96000</td> <td>14</td>  <td>84000</td> <td>9</td>
+            </tr>
+            <tr>
+                <td>US</td> <td>Indonesia</td> <td>Air</td> <td>Sensitive</td> <td>14</td> <td>84000</td> <td>12</td>  <td>72000</td> <td>11</td>
+            </tr>
+            <tr>
+                <td>Japan</td> <td>Indonesia</td> <td>Air</td> <td>General</td> <td>24</td> <td>144000</td> <td>20</td>  <td>120000</td> <td>9</td>
+            </tr>
+            <tr>
+                <td>Japan</td> <td>Indonesia</td> <td>Air</td> <td>Sensitive</td> <td>20</td> <td>120000</td> <td>18</td>  <td>108000</td> <td>11</td>
+            </tr>
+        </table>
+    </div>
+    <a class="d5_warehouses trans-button" href="{{=URL('default','d4')}}">Find our warehouse locations here.</a>
+
+</body>
+
+<script>
+$( document ).ready(function() {
+    $(".section_main").css({"background-color":"#9a8681"});
+});
+</script>
+
+
+
+</html>
